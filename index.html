@@ -145,8 +145,9 @@
         @media (max-width: 768px) {
             .container {
                 margin: 15px;
-                padding: 25px;  
+                padding: 25px;
             }
+            
             h1 {
                 font-size: 1.8em;
             }
@@ -190,4 +191,56 @@
             
             "درآمد": "💰 راه‌های کسب درآمد آنلاین:<br><br>1. <strong>فریلنسینگ</strong> - طراحی سایت، تولید محتوا<br>2. <strong>تولید محتوا</strong> - YouTube, Instagram, Blog<br>3. <strong>فروش محصولات دیجیتال</strong> - کتاب الکترونیکی، دوره آموزشی<br>4. <strong>برنامه‌نویسی</strong> - ساخت اپلیکیشن و وبسایت<br>5. <strong>تجارت الکترونیک</strong> - فروش محصولات آنلاین",
             
-            "زبان": "📚 بهترین زبان‌ها برای شروع:<br><br>• <strong>Python</strong> - ساده، همه‌کاره، بازار کار عالی<br>• <strong>JavaScript</strong> - برای وب، فراگیر، جامعه بزرگ<br>• <strong>Java</strong> - شرکتی، پایدار، فرصت‌های شغلی زیاد<br>• <stron
+            "زبان": "📚 بهترین زبان‌ها برای شروع:<br><br>• <strong>Python</strong> - ساده، همه‌کاره، بازار کار عالی<br>• <strong>JavaScript</strong> - برای وب، فراگیر، جامعه بزرگ<br>• <strong>Java</strong> - شرکتی، پایدار، فرصت‌های شغلی زیاد<br>• <strong>PHP</strong> - برای وب، منابع آموزشی زیاد",
+            
+            "default": "🤔 سوال جالبی پرسیدی! برای پاسخ دقیق‌تر:<br><br>1. <strong>سوالت را دقیق‌تر بپرس</strong><br>2. <strong>در چه زمینه‌ای کمک لازم داری؟</strong><br>3. <strong>چه سطحی از اطلاعات داری؟</strong><br><br>می‌توانی از سوالات نمونه در پایین صفحه ایده بگیری 😊"
+        };
+
+        function fillExample(question) {
+            document.getElementById('question').value = question;
+        }
+
+        function generateAnswer() {
+            const question = document.getElementById('question').value.trim();
+            const answerDiv = document.getElementById('answer');
+            const answerText = document.getElementById('answerText');
+            
+            if (!question) {
+                alert('لطفاً сначала سوال خود را بنویس');
+                return;
+            }
+
+            // نمایش حالت لودینگ
+            answerText.innerHTML = '<div class="loading">🔮 در حال تحلیل سوال و تولید پاسخ هوشمند...</div>';
+            answerDiv.style.display = 'block';
+
+            // شبیه‌سازی هوش مصنوعی
+            setTimeout(() => {
+                let answer = knowledgeBase.default;
+                const lowerQuestion = question.toLowerCase();
+                
+                // جستجوی هوشمند در پایگاه دانش
+                if (lowerQuestion.includes('برنامه') || lowerQuestion.includes('کدنویسی')) {
+                    answer = knowledgeBase.برنامه نویسی;
+                } else if (lowerQuestion.includes('سایت') || lowerQuestion.includes('وب')) {
+                    answer = knowledgeBase.سایت;
+                } else if (lowerQuestion.includes('درآمد') || lowerQuestion.includes('پول') || lowerQuestion.includes('کسب')) {
+                    answer = knowledgeBase.درآمد;
+                } else if (lowerQuestion.includes('زبان') || lowerQuestion.includes('کدام')) {
+                    answer = knowledgeBase.زبان;
+                }
+                
+                answerText.innerHTML = answer;
+            }, 2000);
+        }
+
+        // امکان ارسال با دکمه Enter
+        document.getElementById('question').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                generateAnswer();
+            }
+        });
+    </script>
+</body>
+    </html>
